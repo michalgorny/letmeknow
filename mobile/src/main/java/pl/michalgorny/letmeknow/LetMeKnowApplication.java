@@ -2,23 +2,26 @@ package pl.michalgorny.letmeknow;
 
 import android.app.Application;
 
-import com.squareup.otto.Bus;
-
 import dagger.ObjectGraph;
 import pl.michalgorny.letmeknow.dagger.modules.AppModule;
+import timber.log.Timber;
+
+import static timber.log.Timber.DebugTree;
 
 public class LetMeKnowApplication extends Application {
 
-    public ObjectGraph mGraph;
+    private static ObjectGraph objectGraph;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        buildObjectGraph();
+        Timber.plant(new DebugTree());
+        objectGraph = ObjectGraph.create(new AppModule(this));
+        objectGraph.injectStatics();
     }
 
-    private void buildObjectGraph() {
-        mGraph = ObjectGraph.create(new AppModule());
-        mGraph.inject(this);
+    public static void daggerInject(Object o){
+        objectGraph.inject(o);
     }
+
 }
