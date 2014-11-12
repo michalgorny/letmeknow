@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--Parse application keys-->
+    <string name="application_id">8sO8yHgyee7gsRbJB5lUVtJatGuB694qnuuEwFm7</string>
+    <string name="rest_client_key">bsTfKwIeZS2BBpFZbxJK1a1LmjuO2hPPJUzXvPlv</string>
+    <string name="android_client_key">LMnL4iv11Cpd3lPTinrHZHotFuDdwKlAWyqDFMZN</string>
+
     <string name="app_name">LetMeKnow</string>
     <string name="title_activity_play">PlayActivity</string>
     <string name="hello_world">Hello world!</string>
@@ -8,7 +13,10 @@
     <string name="start_game">Start game</string>
     <string name="let_know">Let other know</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="game_in_progress">Game in progress... \n If finished let other know</string>
+    <string name="game_in_progress">Game in progress...</string>
     <string name="lets_play">Start new game or join to another...</string>
+    <string name="error">Something went wrong</string>
+    <string name="current_game_not_available">You aren\'t joined to any game</string>
+    <string name="empty_string"></string>
 
 </resources>

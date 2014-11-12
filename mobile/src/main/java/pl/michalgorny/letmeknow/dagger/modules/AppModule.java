@@ -1,5 +1,7 @@
 package pl.michalgorny.letmeknow.dagger.modules;
 
+import android.content.Context;
+
 import com.squareup.otto.Bus;
 import com.squareup.otto.ThreadEnforcer;
 
@@ -9,26 +11,28 @@ import dagger.Module;
 import dagger.ObjectGraph;
 import dagger.Provides;
 import pl.michalgorny.letmeknow.LetMeKnowApplication;
-import pl.michalgorny.letmeknow.events.GameManager;
+import pl.michalgorny.letmeknow.api.parse.ParseRequestInterceptor;
+import pl.michalgorny.letmeknow.gcm.PushReceiver;
+import pl.michalgorny.letmeknow.managers.JsonParser;
+import pl.michalgorny.letmeknow.managers.ParsePushManager;
 import pl.michalgorny.letmeknow.ui.MainActivity;
-import pl.michalgorny.letmeknow.ui.PlayActivity;
 import pl.michalgorny.letmeknow.utils.Utils;
 
 @Module(
         includes = {
-          ApiModule.class
+            ApiModule.class,
         },
         injects = {
-                PlayActivity.class,
-                MainActivity.class,
-//                GameManager.class
+            MainActivity.class,
+            ParseRequestInterceptor.class,
+            ParsePushManager.class,
+            PushReceiver.class
         },
         staticInjections = {
-                Utils.class
+            Utils.class
         }
 )
 public class AppModule {
-    private static ObjectGraph mObjectGraph;
     private final LetMeKnowApplication mApplication;
 
     public AppModule(LetMeKnowApplication application) {
@@ -45,6 +49,18 @@ public class AppModule {
     @Singleton
     public LetMeKnowApplication provideApplication(){
         return mApplication;
+    }
+
+    @Provides
+    @Singleton
+    public Context provideContext (){
+        return mApplication;
+    }
+
+    @Provides
+    @Singleton
+    public JsonParser provideJsonParser() {
+        return new JsonParser();
     }
 
 }

@@ -1,4 +1,5 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,17 +11,29 @@
     tools:context="pl.michalgorny.letmeknow.ui.MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/game_text_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="@string/lets_play" />
 
-    <Button
+    <com.dd.CircularProgressButton
         android:id="@+id/game_start_game"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/start_game" />
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        app:cpb_textComplete="@string/game_in_progress"
+        app:cpb_textError="@string/error"
+        app:cpb_textIdle="@string/start_game"
+        android:textColor="@android:color/white"
+        app:cpb_cornerRadius="50dp"/>
 
-</LinearLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_above="@+id/game_start_game"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="52dp" />
+
+</RelativeLayout>

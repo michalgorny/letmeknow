@@ -9,8 +9,9 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import pl.michalgorny.letmeknow.events.GameManager;
-import pl.michalgorny.letmeknow.events.RestService;
+import pl.michalgorny.letmeknow.api.parse.ParseRequestInterceptor;
+import pl.michalgorny.letmeknow.api.parse.ParseService;
+import pl.michalgorny.letmeknow.managers.GameManager;
 import retrofit.Endpoint;
 import retrofit.Endpoints;
 import retrofit.RestAdapter;
@@ -21,7 +22,8 @@ import retrofit.RestAdapter;
 
 @Module(
         complete = false,
-        injects = GameManager.class
+        injects = GameManager.class,
+        library = true
 )
 public class ApiModule {
 
@@ -33,7 +35,7 @@ public class ApiModule {
     }
 
     private static final String PARSE = "parse";
-    private static final String PARSE_URL = "fill_it_with_proper_url";
+    private static final String PARSE_URL = "https://api.parse.com/1";
 
     @Provides
     @ApiName(PARSE)
@@ -44,15 +46,17 @@ public class ApiModule {
     @Provides
     @Singleton
     @ApiName(PARSE)
-    public RestAdapter provideParseApiRestAdapter(@ApiName(PARSE) Endpoint endpoint) {
+    public RestAdapter provideParseApiRestAdapter(@ApiName(PARSE) Endpoint endpoint, ParseRequestInterceptor headers) {
         return new RestAdapter.Builder()
                 .setEndpoint(endpoint)
+                .setRequestInterceptor(headers)
+                .setLogLevel(RestAdapter.LogLevel.FULL)
                 .build();
     }
 
     @Provides
     @Singleton
-    RestService provideRestService(@ApiName(PARSE)RestAdapter restAdapter){
-        return restAdapter.create(RestService.class);
+    ParseService provideParseService(@ApiName(PARSE)RestAdapter restAdapter){
+        return restAdapter.create(ParseService.class);
     }
 }

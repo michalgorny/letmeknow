@@ -1,4 +1,4 @@
 package pl.michalgorny.letmeknow.events;
 
-public class TableAvailableEvent {
+public class GameFinishedEvent {
 }
