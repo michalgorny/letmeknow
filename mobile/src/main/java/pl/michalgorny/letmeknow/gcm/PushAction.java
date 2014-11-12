@@ -1,6 +1,7 @@
 package pl.michalgorny.letmeknow.gcm;
 
 /**
+ * Enum with name of action to communicate with Push Service.
  * @author m.gorny
  */
 public enum PushAction {

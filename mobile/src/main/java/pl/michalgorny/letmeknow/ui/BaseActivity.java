@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import pl.michalgorny.letmeknow.LetMeKnowApplication;
 
 /**
+ * Base Activity for UI layer in application. Provides a bunch of useful operation
  * @author m.gorny
  */
 public class BaseActivity extends Activity {

@@ -18,6 +18,7 @@ import pl.michalgorny.letmeknow.gcm.PushMessage;
 import pl.michalgorny.letmeknow.utils.Utils;
 
 /**
+ * Push message manager used Parse service. Responsible for creating and handling messages.
  * @author m.gorny
  */
 

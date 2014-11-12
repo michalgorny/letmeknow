@@ -14,6 +14,7 @@ import pl.michalgorny.letmeknow.ui.MainActivity;
 import timber.log.Timber;
 
 /**
+ * Extension of @ParsePushBroadcastReceiver to handle receiving Push messages
  * @author m.gorny
  */
 public class PushReceiver extends ParsePushBroadcastReceiver {
@@ -37,8 +38,6 @@ public class PushReceiver extends ParsePushBroadcastReceiver {
         newIntent.putExtras(intent.getExtras());
         newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(newIntent);
-
-
     }
 
     @Override

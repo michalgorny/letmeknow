@@ -8,7 +8,6 @@ import com.squareup.otto.ThreadEnforcer;
 import javax.inject.Singleton;
 
 import dagger.Module;
-import dagger.ObjectGraph;
 import dagger.Provides;
 import pl.michalgorny.letmeknow.LetMeKnowApplication;
 import pl.michalgorny.letmeknow.api.parse.ParseRequestInterceptor;
@@ -17,6 +16,12 @@ import pl.michalgorny.letmeknow.managers.JsonParser;
 import pl.michalgorny.letmeknow.managers.ParsePushManager;
 import pl.michalgorny.letmeknow.ui.MainActivity;
 import pl.michalgorny.letmeknow.utils.Utils;
+
+/**
+ * Application module for satisfy all main application dependencies. It includes another modules to
+ * satisfy specialized dependencies.
+ * @author m.gorny
+ */
 
 @Module(
         includes = {

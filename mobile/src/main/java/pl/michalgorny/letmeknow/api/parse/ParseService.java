@@ -9,6 +9,7 @@ import retrofit.http.POST;
 import retrofit.http.Path;
 
 /**
+ * Simple RestService using Parse backend for manage game state
  * @author m.gorny
  */
 public interface ParseService {

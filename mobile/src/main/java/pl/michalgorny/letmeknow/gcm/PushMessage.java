@@ -3,6 +3,7 @@ package pl.michalgorny.letmeknow.gcm;
 import com.google.gson.annotations.SerializedName;
 
 /**
+ * Class to encapsulate Push messages with proper action and data
  * @author m.gorny
  */
 public class PushMessage {

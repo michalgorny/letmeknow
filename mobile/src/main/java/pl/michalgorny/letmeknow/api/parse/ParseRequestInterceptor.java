@@ -9,6 +9,7 @@ import pl.michalgorny.letmeknow.R;
 import retrofit.RequestInterceptor;
 
 /**
+ * Interceptor for Retrofit service used to add Parse Headers in request to server
  * @author m.gorny
  */
 

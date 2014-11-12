@@ -21,6 +21,11 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 import timber.log.Timber;
 
+/**
+ * Manager class to control game state.
+ * @author m.gorny
+ */
+
 @Singleton
 public class GameManager {
 

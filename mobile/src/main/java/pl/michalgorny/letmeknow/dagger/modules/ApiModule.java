@@ -17,6 +17,7 @@ import retrofit.Endpoints;
 import retrofit.RestAdapter;
 
 /**
+ * API module for satisfy dependencies with server communication
  * @author m.gorny
  */
 

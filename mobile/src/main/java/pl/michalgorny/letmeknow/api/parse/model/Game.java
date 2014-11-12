@@ -3,6 +3,7 @@ package pl.michalgorny.letmeknow.api.parse.model;
 import com.parse.ParseClassName;
 
 /**
+ * POJO class describing a game
  * @author m.gorny
  */
 @ParseClassName("Game")
