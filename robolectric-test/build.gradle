@@ -1,27 +1,20 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        maven {
-            url 'https://oss.sonatype.org/content/repositories/snapshots'
-        }
-    }
-
-    dependencies {
-        classpath 'com.novoda.gradle:robolectric-plugin:0.0.3-SNAPSHOT'
-    }
-}
-
 apply plugin: 'java'
-//apply plugin: 'robolectric'
+evaluationDependsOn(':mobile')
 
 tasks.withType(Test) {
     scanForTestClasses = false
     include "**/*Test.class" // whatever Ant pattern matches your test class files
+    include "**/*Should.class"
+    include "**/*Tests.class"
 }
 
 dependencies {
     def androidModule = project(':mobile')
-    compile androidModule
+    compile project(path: ':mobile', configuration: 'debugCompile')
+
+    def debugVariant = androidModule.android.applicationVariants.find({ it.name == 'debug' })
+    testCompile debugVariant.javaCompile.classpath
+    testCompile debugVariant.javaCompile.outputs.files
 
     testCompile androidModule.android.applicationVariants.toList().first().javaCompile.classpath
     testCompile androidModule.android.applicationVariants.toList().first().javaCompile.outputs.files
@@ -29,6 +22,5 @@ dependencies {
 
     compile 'org.mockito:mockito-all:1.10.8'
     compile 'junit:junit:4.12-beta-3'
-    compile 'org.robolectric:robolectric:2.+'
+    compile 'org.robolectric:robolectric:2.2'
 }
-
