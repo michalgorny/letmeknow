@@ -1,5 +1,6 @@
 package pl.michalgorny.letmeknow.dagger.modules;
 
+import android.app.Application;
 import android.content.Context;
 
 import com.squareup.otto.Bus;
@@ -20,45 +21,46 @@ import pl.michalgorny.letmeknow.utils.Utils;
 /**
  * Application module for satisfy all main application dependencies. It includes another modules to
  * satisfy specialized dependencies.
+ *
  * @author m.gorny
  */
 
 @Module(
         includes = {
-            ApiModule.class,
+                ApiModule.class,
         },
         injects = {
-            MainActivity.class,
-            ParseRequestInterceptor.class,
-            ParsePushManager.class,
-            PushReceiver.class
+                MainActivity.class,
+                ParseRequestInterceptor.class,
+                ParsePushManager.class,
+                PushReceiver.class
         },
         staticInjections = {
-            Utils.class
+                Utils.class
         }
 )
 public class AppModule {
     private final LetMeKnowApplication mApplication;
 
-    public AppModule(LetMeKnowApplication application) {
-        mApplication = application;
+    public AppModule(Application application) {
+        mApplication = (LetMeKnowApplication) application;
     }
 
     @Provides
     @Singleton
-    public Bus provideBus(){
+    public Bus provideBus() {
         return new Bus(ThreadEnforcer.ANY);
     }
 
     @Provides
     @Singleton
-    public LetMeKnowApplication provideApplication(){
+    public LetMeKnowApplication provideApplication() {
         return mApplication;
     }
 
     @Provides
     @Singleton
-    public Context provideContext (){
+    public Context provideContext() {
         return mApplication;
     }
 

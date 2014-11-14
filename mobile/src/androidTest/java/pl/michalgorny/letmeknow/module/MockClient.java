@@ -1,4 +1,4 @@
-package pl.michalgorny.letmeknow.dagger.modules;
+package pl.michalgorny.letmeknow.module;
 
 import java.io.IOException;
 import java.util.Collections;

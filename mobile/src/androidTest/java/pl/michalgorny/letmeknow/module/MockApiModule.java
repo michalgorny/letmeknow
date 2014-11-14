@@ -1,10 +1,11 @@
-package pl.michalgorny.letmeknow.dagger.modules;
+package pl.michalgorny.letmeknow.module;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 import pl.michalgorny.letmeknow.api.parse.ParseService;
+import pl.michalgorny.letmeknow.dagger.modules.ApiModule;
 import pl.michalgorny.letmeknow.ui.MainActivity;
 import retrofit.RestAdapter;
 import retrofit.client.Client;
@@ -23,7 +24,7 @@ public class MockApiModule {
 
     @Provides
     @ApiModule.ApiName(MOCK_PARSE)
-    ParseService provideMockParseService(Client client){
+    ParseService provideMockParseService(Client client) {
         return new RestAdapter.Builder()
                 .setClient(client)
                 .build().create(ParseService.class);
@@ -31,7 +32,7 @@ public class MockApiModule {
 
     @Singleton
     @Provides
-    Client provideMockClient(){
+    Client provideMockClient() {
         return new MockClient();
     }
 }
